@@ -75,7 +75,7 @@
     <div class="container">
         <h1 id="LogInTitle" style="color: #fefae0">READING LOG</h1>
         <br>
-        <form id="login" action="./bookLoginMain.html">
+        <form id="login" action="bookLogInMain.html">
             <input type="text" id="id" name="id" placeholder="아이디" required>
             <br>
             <input type="password" id="pw" name="pw" placeholder="비밀번호" required>
@@ -87,33 +87,40 @@
         </form>
     </div>
 
-
-    <script>
-        const id = document.getElementById("id");
-        const pw = document.getElementById("pw");
-        const login = document.getElementById("login");
-
-        login.addEventListener("submit", function (e) {
-
-            if ((localStorage.getItem("id") !== id.value) && (id.value !== "test")) {
-                document.getElementById("test").innerHTML = "아이디 또는 비밀번호를 잘못 입력했습니다."
-                console.log(id.value !== "test", id.value)
-                id.focus();
-                e.preventDefault();
-            } else if ((localStorage.getItem("pw") !== pw.value) && (pw.value !== "1234")) {
-                document.getElementById("test").innerHTML = "아이디 또는 비밀번호를 잘못 입력했습니다."
-
-                pw.focus();
-                e.preventDefault();
-            }
-
-        })
-    </script>
-
-
-
-
-
 </body>
+<script>
+    const id = document.getElementById("id");
+    const pw = document.getElementById("pw");
+    const login = document.getElementById("login");
+
+
+    const memberlist = JSON.parse(localStorage.getItem("memberlist"));
+    console.log(memberlist);
+
+
+
+
+
+    login.addEventListener("submit", function (e) {
+        console.log(id.value, pw.value)
+
+        if (memberlist.findIndex(obj => obj.id == id.value) < 0) {
+            document.getElementById("test").innerHTML = "아이디 또는 비밀번호를 잘못 입력했습니다."
+
+            id.focus();
+            e.preventDefault();
+
+        } else if (memberlist.findIndex(obj => obj.id == id.value) !== memberlist.findIndex(obj => obj.pw == pw
+                .value)) {
+            document.getElementById("test").innerHTML = "아이디 또는 비밀번호를 잘못 입력했습니다."
+
+            pw.focus();
+            e.preventDefault();
+        }
+
+    })
+
+    /* console.log(memberlist); */
+</script>
 
 </html>

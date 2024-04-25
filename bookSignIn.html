@@ -162,35 +162,8 @@
     let email = document.getElementById("email");
     let phone = document.getElementById("phone");
     let userSex = document.getElementsByName("userSex");
+    let memberlist = [];
 
-    let memberlist = [{
-
-            "id": "id1",
-            "pw": "1111",
-            "name": "이자바",
-            "birth": "19910101",
-            "email": "lee@java.com",
-            "phone": "01011111111",
-            "userSex": "female"
-        }, {
-            "id": "id2",
-            "pw": "2222",
-            "name": "우재남",
-            "birth": "19810101",
-            "email": "lee@java.com",
-            "phone": "01023456789",
-            "userSex": "male"
-        },
-        {
-            "id": "id3",
-            "pw": "3333",
-            "name": "김수정",
-            "birth": "20110101",
-            "email": "kim@java.com",
-            "phone": "01034567890",
-            "userSex": "female"
-        }
-    ];
 
 
     const regId = /^[0-9a-z]{4,20}$/;
@@ -326,13 +299,24 @@
 
             window.localStorage.setItem("id", member.id);
             window.localStorage.setItem("pw", member.pw);
-            memberlist.push(member);
+
+            let userInfo = {
+                id: member.id,
+                pw: member.pw
+            };
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
+            const userLoginInfo = JSON.parse(localStorage.getItem("userInfo"));
+            memberlist.push(userLoginInfo);
+
+            localStorage.setItem("memberlist", JSON.stringify(memberlist));
+            /* console.log(memberlist); */
+            console.log(JSON.parse(localStorage.getItem("memberlist")));
+
 
 
 
         }
     );
 </script>
-
 
 </html>
