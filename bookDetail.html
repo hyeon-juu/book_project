@@ -133,6 +133,18 @@
             },
         ];
 
+        function updateReviewCount() {
+            const reviewCountElement1 = document.querySelector('.btn_detail_purchase');
+            const reviewCountElement2 = document.querySelector('.nav_button_review');
+
+            reviewCountElement1.textContent = `${reviews.length}개의 리뷰`;
+            reviewCountElement2.textContent = `리뷰(${reviews.length})`;
+        }
+
+        // 초기 업데이트
+        updateReviewCount();
+
+
         const reviewTable = document.querySelector('.review table');
 
         reviews.forEach((review, index) => {
