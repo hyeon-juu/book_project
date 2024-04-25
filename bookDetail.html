@@ -150,14 +150,42 @@
 
             // 테이블 내 리뷰 내용 추가
             const reviewCell = document.createElement('td');
-            reviewCell.textContent = review.review_content;
-            row.appendChild(reviewCell);
+            const contentSpan = document.createElement('span');
+            contentSpan.textContent = review.review_content.substring(0, 100) + '...';
+            contentSpan.classList.add('review-content');
 
+            const moreBtn = document.createElement('button');
+            moreBtn.textContent = '펼치기';
+            moreBtn.classList.add('more-btn');
+
+            const lessBtn = document.createElement('button');
+            lessBtn.textContent = '접기';
+            lessBtn.classList.add('less-btn');
+            lessBtn.style.display = 'none';
+
+            reviewCell.appendChild(contentSpan);
+            reviewCell.appendChild(moreBtn);
+            reviewCell.appendChild(lessBtn);
+
+            row.appendChild(reviewCell);
             reviewTable.appendChild(row);
+
+            moreBtn.addEventListener('click', function () {
+                contentSpan.textContent = review.review_content;
+                moreBtn.style.display = 'none';
+                lessBtn.style.display = 'inline-block';
+            });
+
+            lessBtn.addEventListener('click', function () {
+                contentSpan.textContent = review.review_content.substring(0, 100) + '...';
+                lessBtn.style.display = 'none';
+                moreBtn.style.display = 'inline-block';
+            });
 
             const hrTag = document.createElement('hr');
             reviewTable.appendChild(hrTag);
         });
+
 
         //페이지 번호 생성 및 클릭 이벤트 추가
         document.addEventListener("DOMContentLoaded", function () {
