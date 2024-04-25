@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>회원탈퇴</title>
+</head>
+
+<body>
+	<header class="screen-header">
+		<span><a href="index.html">READING LOG</a></span>
+
+		<div class="screen-header__user">
+			<a href="bookMain.html">Log Out</a>
+		</div>
+	</header>
+
+	<main class="main-screen">
+		<section class="deleteAccount">
+			<article>
+				<h3>회원탈퇴</h3>
+				<br>
+				<div class="deleteAccountGuide">
+					<h2>아래 내용을 꼭 확인해주세요.</h2>
+					<hr>
+					<p class="deleteAccountGuide__msg">회원탈퇴 즉시 회원정보는 모두 삭제되며, 재가입시에도 복원되지않습니다.</p>
+					<hr>
+					<p>정확한 본인확인을 위해 비밀번호를 입력해주세요.</p>
+					<div>
+						비밀번호<input type="password" id="pwCheck">
+					</div>
+					<button id="deleteAccountBtn">회원탈퇴</button>
+				</div>
+			</article>
+		</section>
+	</main>
+
+	<script>
+		/* 회원탈퇴 버튼 클릭 시 */
+		document.getElementById("deleteAccountBtn").onclick = function () {
+			/* 임시 회원 비밀번호 */
+			const myPw = 1234;
+			const pwCheck = document.getElementById("pwCheck").value;
+
+			const deleteCheck = confirm("정말 탈퇴하시겠습니까?");
+
+			if (deleteCheck) {
+				if (myPw == pwCheck) {
+					/* DB에서 해당 회원정보 삭제 처리 필요  */
+
+					/* 회원탈퇴 후 메인화면 보여줌 */
+					location.href = "bookMain.html";
+				} else {
+					alert("비밀번호가 일치하지않습니다.");
+				}
+			}
+
+
+		};
+	</script>
+
+</body>
+
+</html>

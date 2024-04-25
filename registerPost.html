@@ -1,0 +1,92 @@
+<!-- registerPost.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 등록</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="screen-header">
+        <span><a href="index.html">READING LOG</a></span>
+
+
+        <div class="screen-header__user">
+            <a href="bookLogIn.html">Log In</a>
+            <a href="bookSignIn.html">Sign In</a>
+        </div>
+    </header>
+
+    <nav class="header-nav">
+        <ul class="header-nav__lists">
+            <li><a href="bookBest.html">Best</a></li>
+            <li><a href="bookNew.html">New</a></li>
+            <li><a href="bookBoard.html">Community</a></li>
+        </ul>
+    </nav>
+
+
+    <main class="post-form-box">
+        <form id="post-form">
+            <div class="form-group">
+                <label for="category">카테고리:</label>
+                <select id="category" name="category">
+                    <option value="book">도서리뷰게시판</option>
+                    <option value="free">자유게시판</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">제목:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">내용:</label>
+                <textarea id="content" name="content" rows="8" required></textarea>
+            </div>
+            <div class="button-group">
+                <button type="submit">등록</button>
+                <button id="cancel-button" type="button" onclick="cancelRegistration()">취소</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        // 등록 폼 가져오기
+        var postForm = document.getElementById("post-form");
+
+        // 폼 제출 시 처리
+        postForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // 폼 기본 동작 방지
+
+            // 입력된 데이터 가져오기
+            var category = document.getElementById("category").value;
+            var title = document.getElementById("title").value;
+            var content = document.getElementById("content").value;
+
+            // 여기서 서버로 데이터를 보내거나, 다른 처리를 할 수 있습니다.
+            // 이 예시에서는 콘솔에 데이터를 출력하는 것으로 대체합니다.
+            console.log("카테고리:", category);
+            console.log("제목:", title);
+            console.log("내용:", content);
+
+            // 등록 완료 메시지 표시
+            alert("게시글 등록이 완료되었습니다.");
+
+            // 페이지 이동 (예: 메인 페이지로 이동)
+            window.location.href = "bookBoard.html";
+        });
+
+        //취소 버튼 클릭 시 처리
+        function cancelRegistration() {
+            // 경고창을 통해 확인 후 취소 여부를 물어봅니다.
+            if (confirm("게시글 등록을 취소하시겠습니까?")) {
+                // 페이지 이동 (예: 메인 페이지로 이동)
+                window.location.href = "bookBoard.html";
+            }
+        }
+    </script>
+</body>
+
+</html>

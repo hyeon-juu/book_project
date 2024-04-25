@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>회원정보 수정</title>
+</head>
+
+<body>
+	<header class="screen-header">
+		<span><a href="bookMain.html">READING LOG</a></span>
+
+		<div class="screen-header__user">
+			<a href="index.html">Log Out</a>
+		</div>
+	</header>
+
+	<main class="main-screen">
+		<section class="memberInfoModify">
+			<article>
+				<h1>회원정보 수정</h1>
+				<br>
+				<!-- 해당 회원 정보 테이블 -->
+				<table id="myInfo_table">
+					<tr>
+						<th>아이디</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th>생년월일</th>
+						<td></td>
+					</tr>
+					<tr>
+						<th>휴대폰번호</th>
+						<td id=telColumn>
+							<div id="update"><span id="span"></span><button id="telModifyBtn"
+									class="modifyBtn">수정</button></div>
+							<div id="update2" hidden><input type='tel' id='telModify'><button id='telModifyBtn2'
+									class='modifyBtn'>수정완료</button></div>
+						</td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td><button id="pwModifyBtn" class="modifyBtn">비밀번호 변경</button></td>
+					</tr>
+				</table>
+			</article>
+		</section>
+	</main>
+
+	<script>
+		displayInfoTable();
+
+		/* 현재 회원 정보 가져오기 */
+		function displayInfoTable() {
+			/* 회원정보 임시데이터 */
+			const memberInfoDatas = ["test", "홍길동", "2001년 01월 01일", "010-1234-5678", 1234];
+
+			const table = document.getElementById("myInfo_table");
+			const rowList = table.rows;
+			for (let i = 0; i < rowList.length - 1; i++) {
+				if (i == 3) {
+					document.getElementById("span").innerHTML = memberInfoDatas[i];
+				} else {
+					rowList[i].cells[1].prepend(memberInfoDatas[i]);
+				}
+			}
+		}
+
+		const telModifyBtn = document.getElementById("telModifyBtn");
+		const telModifyBtn2 = document.getElementById("telModifyBtn2");
+
+		// 전화번호 변경
+		document.getElementById("telModifyBtn").onclick = function () {
+			document.getElementById('update').hidden = true;
+			document.getElementById('update2').hidden = false;
+		};
+
+		document.getElementById("telModifyBtn2").onclick = function () {
+			document.getElementById('update').hidden = false;
+			document.getElementById('update2').hidden = true;
+			document.getElementById('span').textContent = document.getElementById('telModify').value;
+		};
+
+		/* 비밀번호 변경 */
+		document.getElementById("pwModifyBtn").onclick = function () {
+			window.open("pwModifyPage.html", "_blank", "width=600, height=400");
+		};
+	</script>
+
+</body>
+
+</html>

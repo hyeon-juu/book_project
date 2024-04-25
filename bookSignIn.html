@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        body {
+            background: #283618
+        }
+
+        #signInTitle {
+            font-family: "Platypi", serif;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 5em;
+            text-align: center;
+            position: relative;
+        }
+
+        input {
+            font-size: 17px;
+            border-radius: 10px;
+            margin: 3px;
+            border: 2px solid #fefae0;
+        }
+
+        .idpw input,
+        #name,
+        #phone,
+        #signin,
+        #email {
+            width: 400px;
+            height: 40px;
+        }
+
+        .idpw,
+        .other {
+            font-size: 15px;
+
+        }
+
+        #birth {
+            width: 285px;
+            height: 40px;
+        }
+
+        #signin {
+            background-color: #606c38;
+            color: #fefae0;
+            font-size: 20px;
+            border-radius: 10px;
+            margin: 5px;
+            border: 2px solid #fefae0;
+            height: 50px;
+        }
+
+        .form_radio_btn {
+            width: 50px;
+            height: 40px;
+            display: inline-block;
+            margin: -2px;
+
+        }
+
+        .form_radio_btn input[type=radio] {
+            display: none;
+        }
+
+        .form_radio_btn label {
+            display: block;
+            width: 45px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 40px;
+            font-size: 15px;
+            border-radius: 10px;
+
+
+        }
+
+        /* Checked */
+        .form_radio_btn input[type=radio]:checked+label {
+            background: #606c38;
+            color: white;
+            border: 2px solid #fefae0;
+
+
+
+        }
+
+        /* Hover */
+        .form_radio_btn label:hover {
+            color: #666;
+        }
+
+        /* Disabled */
+        .form_radio_btn input[type=radio]+label {
+            background: white;
+            color: #666;
+
+
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <form id="newMember" action="bookLogIn.html">
+        <div class="container">
+
+            <div class="idpw">
+                <h1 style="color: #fefae0" id="signInTitle">READING LOG</h1>
+                <br> <input type="text" id="id" name="id" placeholder="아이디" required> <br> <input type="password"
+                    id="pw" name="pw" placeholder="비밀번호" required> <br>
+                <div id="checkIdPw" style="color: #fefae0"></div>
+                <br> <br>
+            </div>
+            <div class="other">
+                <input type="text" id="name" name="name" placeholder="이름" required>
+                <br> <input type="text" id="birth" name="birth" placeholder="생년월일 8자리" required>
+                &nbsp;
+
+                <div class="form_radio_btn radio_male">
+                    <input id="radio-1" type="radio" name="userSex" value="male" checked> <label
+                        for="radio-1">남성</label>
+                </div>
+
+                <div class="form_radio_btn">
+                    <input id="radio-2" type="radio" name="userSex" value="female">
+                    <label for="radio-2">여성</label>
+                </div>
+
+                <br> <input type="text" id="email" name="email" placeholder="이메일주소">
+                <br><input type="text" id="phone" name="phone" placeholder="휴대전화번호" required>
+                <br>
+                <div id="checkOther" style="color: #fefae0"></div>
+                <br> <br> <br>
+            </div>
+
+
+            <button type="submit" id="signin">회원가입</button>
+
+        </div>
+    </form>
+
+
+
+
+</body>
+
+
+<script>
+    let id = document.getElementById("id");
+    let pw = document.getElementById("pw");
+    let name = document.getElementById("name");
+    let birth = document.getElementById("birth");
+    let email = document.getElementById("email");
+    let phone = document.getElementById("phone");
+    let userSex = document.getElementsByName("userSex");
+
+    let memberlist = [{
+
+            "id": "id1",
+            "pw": "1111",
+            "name": "이자바",
+            "birth": "19910101",
+            "email": "lee@java.com",
+            "phone": "01011111111",
+            "userSex": "female"
+        }, {
+            "id": "id2",
+            "pw": "2222",
+            "name": "우재남",
+            "birth": "19810101",
+            "email": "lee@java.com",
+            "phone": "01023456789",
+            "userSex": "male"
+        },
+        {
+            "id": "id3",
+            "pw": "3333",
+            "name": "김수정",
+            "birth": "20110101",
+            "email": "kim@java.com",
+            "phone": "01034567890",
+            "userSex": "female"
+        }
+    ];
+
+
+    const regId = /^[0-9a-z]{4,20}$/;
+    const regPw = /^[0-9a-zA-Z!@#\$%]{4,16}$/;
+    const regName = /^[a-zA-Z가-힣]{2,10}$/;
+    const regBirth = /^[1|2]{1}[8|9|0]{1}\d{2}[0|1]{1}\d{1}[0-3]{1}\d{1}$/;
+    const regPhone = /^010\d{7,8}$/;
+    const regEmail = /^[0-9A-Za-z]{1,}@[0-9A-Za-z]{1,8}(.com|.net|.ac.kr)$/;
+
+    id.onblur = function (e) {
+        if (!regId.test(id.value)) {
+            document.getElementById("checkIdPw").innerHTML = "아이디는 4~20자의 영문 소문자, 숫자만 사용 가능합니다.";
+            id.focus();
+
+        }
+
+    }
+    id.onchange = function (e) {
+        if (regId.test(id.value)) {
+            document.getElementById("checkIdPw").innerHTML = "";
+
+        }
+    }
+
+    pw.onblur = function (e) {
+        if (!regPw.test(pw.value)) {
+            document.getElementById("checkIdPw").innerHTML = "비밀번호는 4~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.";
+            pw.focus();
+        }
+
+    }
+
+    pw.onchange = function (e) {
+        if (regPw.test(pw.value)) {
+            document.getElementById("checkIdPw").innerHTML = "";
+
+        }
+
+    }
+
+    name.onblur = function (e) {
+        if (!regName.test(name.value)) {
+            document.getElementById("checkOther").innerHTML = "이름은 2~10자의 한글, 영문, 숫자만 사용 가능합니다.";
+            name.focus();
+        }
+    }
+
+    name.onchange = function (e) {
+        if (regName.test(name.value)) {
+            document.getElementById("checkOther").innerHTML = "";
+
+        }
+
+    }
+
+    birth.onblur = function (e) {
+        if (!regBirth.test(birth.value)) {
+            document.getElementById("checkOther").innerHTML = "생년월일 8자리를 입력하세요.";
+            birth.focus();
+
+        }
+    }
+
+    birth.onchange = function (e) {
+        if (regBirth.test(birth.value)) {
+            document.getElementById("checkOther").innerHTML = "";
+
+        }
+
+    }
+
+    email.onblur = function (e) {
+        if (!regEmail.test(email.value)) {
+            document.getElementById("checkOther").innerHTML = "이메일 주소가 정확한지 확인해 주세요.";
+            email.focus();
+
+        }
+    }
+
+    email.onchange = function (e) {
+        if (regEmail.test(email.value)) {
+            document.getElementById("checkOther").innerHTML = "";
+
+        }
+
+    }
+
+    phone.onblur = function (e) {
+
+        if (!regPhone.test(phone.value)) {
+            document.getElementById("checkOther").innerHTML = "휴대폰번호를 다시 확인해주세요.";
+            phone.focus();
+
+        }
+    }
+    phone.onchange = function (e) {
+        if (regPhone.test(phone.value)) {
+            document.getElementById("checkOther").innerHTML = "";
+
+        }
+
+    }
+
+
+
+
+    const newMember = document.querySelector("#newMember");
+    newMember.addEventListener('submit',
+        function (e) {
+
+            if (!regId.test(document.getElementById("id").value) ||
+                !regPw.test(document.getElementById("pw").value) ||
+                !regName.test(document.getElementById("name").value) ||
+                !regBirth.test(document.getElementById("birth").value) ||
+                !regPhone.test(document.getElementById("phone").value) ||
+                !regEmail.test(document.getElementById("email").value)) {
+
+                e.preventDefault();
+                return;
+
+
+            }
+            let member = {
+
+                id: document.getElementById("id").value,
+                pw: document.getElementById("pw").value,
+                name: document.getElementById("name").value,
+                birth: document.getElementById("birth").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                userSex: document.querySelector('input[name="userSex"]:checked').value
+            };
+
+            window.localStorage.setItem("id", member.id);
+            window.localStorage.setItem("pw", member.pw);
+            memberlist.push(member);
+
+
+
+        }
+    );
+</script>
+
+
+</html>

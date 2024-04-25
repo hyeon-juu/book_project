@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>마이페이지</title>
+</head>
+
+<body>
+    <header class="screen-header">
+        <span><a href="index.html">READING LOG</a></span>
+
+        <div class="screen-header__user">
+            <a href="bookMain.html">Log Out</a>
+        </div>
+    </header>
+
+    <main class="main-screen-mypage">
+        <aside class="myProfile">
+            <div class="myProfile__info">
+                <img src="img/userimg.jpg" />
+                <span class="myProfile__name">회원명 님</span>
+            </div>
+
+            <div class="mypageMenu-p">
+                <span>주문내역</span>
+                <a href="#">주문내역/배송조회</a>
+                <span>나의 정보</span>
+                <a href="#" id="myInfoModify">회원정보 수정</a>
+                <a href="deleteAccount.html">회원탈퇴</a>
+            </div>
+        </aside>
+
+        <section class="myorderList">
+            <article>
+                <h1>최근 주문내역</h1>
+                <!-- 회원 주문데이터에따라 테이블 열 개수 동적으로 변경되야함 -->
+                <table id="myorderList_table">
+                    <tr>
+                        <th>주문일자</th>
+                        <th>주문번호</th>
+                        <th>주문내역</th>
+                        <th>주문상태</th>
+                    </tr>
+                </table>
+            </article>
+        </section>
+    </main>
+
+    <script>
+        displayOrderTable();
+
+        /* 현재 회원 주문내역 데이터 가져오기 */
+        function displayOrderTable() {
+            /* 주문내역 임시데이터 */
+            const orderDatas = [{
+                    orderDate: "2024.04.02",
+                    orderNum: "A001",
+                    orderTitle: "노인과 바다",
+                    orderState: "주문접수"
+                },
+                {
+                    orderDate: "2024.04.03",
+                    orderNum: "A002",
+                    orderTitle: "동물농장",
+                    orderState: "주문접수"
+                }
+            ];
+
+            const table = document.getElementById("myorderList_table")
+            for (let i = 0; i < orderDatas.length; i++) {
+                const newRow = table.insertRow();
+
+                var orderDate = newRow.insertCell(0);
+                var orderNum = newRow.insertCell(1);
+                var orderTitle = newRow.insertCell(2);
+                var orderState = newRow.insertCell(3);
+
+                orderDate.innerText = orderDatas[i].orderDate;
+                orderNum.innerText = orderDatas[i].orderNum;
+                orderTitle.innerText = orderDatas[i].orderTitle;
+                orderState.innerText = orderDatas[i].orderState;
+            }
+        }
+
+        /* 회원정보 수정 페이지로 이동 */
+        document.getElementById("myInfoModify").onclick = function () {
+            /* 페이지 이동 전 비밀번호 재확인 */
+            var pwCnt = 0;
+            var pwCheck = prompt("비밀번호 재확인", "비밀번호 입력(현재 임시비번은 1234)");
+            while (true) {
+                if (!pwCheck) break;
+                /* 현재 회원 암호 가져와서 비교, 현재 임시암호 */
+                if (pwCheck == "1234") {
+                    /* 비밀번호 일치하면 회원정보 수정 페이지로 이동 */
+                    location.href = "memberInfoModify.html";
+                    break;
+                }
+                pwCnt++;
+                pwCheck = prompt("비밀번호를" + pwCnt + "회 잘못 입력하셨습니다.", "비밀번호 입력(현재 임시비번은 1234)");
+            }
+        };
+    </script>
+</body>
+
+</html>

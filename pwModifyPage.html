@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.css">
+	<title>비밀번호 변경</title>
+</head>
+
+<body>
+	<header class="screen-header">
+		<span><a href="index.html">READING LOG</a></span>
+
+		<div class="screen-header__user">
+			<a href="bookLogIn.html">Log In</a>
+			<a href="bookSignIn.html">Sign In</a>
+		</div>
+	</header>
+	<div class="screen-pwModify">
+		<h1>비밀번호 변경</h1>
+		<div>
+			새 비밀번호<input type="password" id="newPw">
+		</div>
+		<div>
+			새 비밀번호 재확인<input type="password" id="newPwCheck">
+		</div>
+		<div id="pwCheckText">비밀번호를 한번 더 입력해주세요.</div>
+		<div>
+			<button id="pwModifyEnd">변경완료</button>
+		</div>
+		<div id="checkdiv"></div>
+	</div>
+
+	<script>
+		/* 변경할 비밀번호 일치 확인 */
+		document.getElementById("newPwCheck").oninput = function (e) {
+			const newPw = document.getElementById("newPw").value;
+			const newPwCheck = document.getElementById("newPwCheck").value;
+
+			/* 새 비밀번호가  비밀번호 양식 지키는지 확인하는 코드 추가 필요 */
+
+			if (newPw != newPwCheck) {
+				document.getElementById("pwCheckText").innerHTML = "비밀번호가 일치하지 않습니다.";
+			} else {
+				document.getElementById("pwCheckText").innerHTML = "<p></p>";
+			}
+		}
+
+		/* 비밀번호 변경 */
+		document.getElementById("pwModifyEnd").onclick = function () {
+			const newPw = document.getElementById("newPw").value;
+			const newPwCheck = document.getElementById("newPwCheck").value;
+
+			if (newPw == newPwCheck && newPw != "") {
+				alert("비밀번호 변경이 완료되었습니다.")
+				window.close();
+			} else {
+				alert("비밀번호를 확인해주세요.")
+			}
+		};
+	</script>
+</body>
+
+</html>

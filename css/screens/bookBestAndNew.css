@@ -1,0 +1,189 @@
+@charset "UTF-8";
+#main_header {
+	margin-left: 200px;
+}
+
+.book_list {
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+  border-top: 1px solid var(--white);
+  padding : 20px 0;
+}
+.book_list img{
+    width : 150px;
+    height : 200px;
+}   
+
+.book_thumb_image a,
+.book_btn_wrap a{
+    display: flex;
+    justify-content: center;
+}
+
+.book_thumb_image, .book_info, .book_btn_wrap {
+	flex: 1;
+	margin: 0 10px;
+}
+
+
+
+.book_name, .btn_purchase, .btn_review {
+	text-decoration: none;
+}
+
+.book_name{
+	font-weight: bold;
+}
+
+.list_hr{
+	width: 80%;
+}
+
+/*버튼 바탕색 및 텍스트 색 변경 필요*/
+.btn_totop {
+  position: fixed; 
+  bottom: 20px; 
+  right: 20px; 
+  z-index: 999; 
+  width: 50px; 
+  height: 50px; 
+  background-color: black; 
+  color: gray;
+  border: none; 
+  border-radius: 50%; 
+  text-align: center; 
+  line-height: 50px; 
+  font-size: 20px; 
+}
+
+.pagination {
+    text-align: center; 
+    margin-top: 30px;
+    margin-bottom: 200px;
+}
+
+/*페이지번호 색 수정 필요*/
+.page-link {
+    padding: 8px 12px; 
+    margin: 0 3px; 
+    background-color: white; 
+    border-radius: 3px; 
+    text-decoration: none; 
+    cursor: pointer; 
+}
+
+.page-link:hover {
+    background-color: yellow; 
+}
+
+.page-link.active {
+    background-color: pink; 
+}
+
+
+/* card */
+.best-book {
+  font-family: "Diphylleia", serif;
+  transform : translateY(-50px);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;   
+  justify-content: center;
+  align-items: center;
+}
+.best-box{
+    display: flex;
+    align-items: center;
+}
+.best-box__books{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin : 10px;
+}
+.best-box__books span,
+.best-box__books h1{
+    padding :0 0 10px 0;   
+    width : 400px;
+    text-align: center;
+}
+.best-box__books span{
+    color : tomato;
+    font-size: 30px;
+}
+.best-box__books h1{
+    font-size: 24px;
+}
+.card {
+  aspect-ratio: 1 / 0.7;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  color: white;
+}
+.card .image-box {
+  width: 100%;
+  height: 80%;
+  border-radius: inherit;
+}
+.card .image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 90%;
+  border-radius: inherit;
+  transition: 0.5s ease-in-out;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid white;
+  border-radius: inherit;
+  opacity: 0;
+  transition: 0.4s ease-in-out;
+}
+
+.card:hover img {
+  filter: grayscale(1) brightness(0.4);
+}
+.card:hover::after {
+  opacity: 1;
+  inset: 20px;
+}
+
+.content {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.content h2,
+.content p {
+  opacity: 0;
+  transition: 0.4s 0.2s ease;
+}
+.content h2 {
+  margin-bottom: 12px;
+  scale: 0.7;
+}
+.content p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #d1d1d1;
+  transform: translateY(50%);
+}
+.card:hover .content h2 {
+  scale: 1;
+  opacity: 1;
+}
+.card:hover .content P {
+  opacity: 1;
+  transform: translateY(0);
+}

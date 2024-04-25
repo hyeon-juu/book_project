@@ -1,0 +1,282 @@
+<!-- bookBoard.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="screen-header">
+        <span><a href="index.html">READING LOG</a></span>
+        <div class="screen-header__search">
+            <input type="text" id="searchInput" placeholder="검색어 입력" onkeydown="handleSearch(event)">
+            <i onclick="searchBooks()" class="fa-solid fa-magnifying-glass fa-lg"></i>
+
+        </div>
+
+        <div class="screen-header__user">
+            <a href="bookLogIn.html">Log In</a>
+            <a href="bookSignIn.html">Sign In</a>
+        </div>
+    </header>
+
+    <nav class="header-nav">
+        <ul class="header-nav__lists">
+            <li><a href="bookBest.html">Best</a></li>
+            <li><a href="bookNew.html">New</a></li>
+            <li><a href="bookBoard.html">Community</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Community</h2>
+        <div class="category">
+            <div class="category__button screen-header__user">
+                <a href="#">도서리뷰게시판</a>
+                <a href="#">자유게시판</a>
+            </div>
+            <button id="create-post">게시글 작성</button>
+        </div>
+
+        <div class="post-list">
+            <!-- 등록된 게시글 목록을 동적으로 추가할 부분 -->
+            <div class="post">
+                <a href="#">
+                    <!-- 첫 번째 게시글의 상세 페이지로의 링크 -->
+                    <h3>게시글1 제목</h3> <!-- 클릭 가능한 게시글 제목 -->
+                </a>
+                <!-- 게시글의 작성자, 작성일, 조회수 등의 정보 -->
+                <div class="metadata">
+                    <span class="author">작성자: 사용자명</span>
+                    <span class="date">작성일: 2024-04-22</span>
+                    <span class="views">조회수: 100</span>
+                </div>
+                <a href="#" class="edit-link">수정</a>
+                <a href="#" class="delete-link">삭제</a>
+            </div>
+            <!-- 다른 게시글들의 목록 -->
+        </div>
+
+
+        <div class="search">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <button id="search-btn">검색</button>
+        </div>
+
+        <div class="pagination">
+            <!-- 페이지 순서를 나타내는 부분 -->
+        </div>
+    </main>
+
+    <script>
+        //게시글 등록 버튼 클릭 시 registerPost.html로 이동
+        document.getElementById("create-post").addEventListener("click", function () {
+            window.location.href = "registerPost.html";
+        });
+
+        //등록된 게시글 데이터 (임시)
+        const posts = [{
+                title: "게시글1 제목",
+                author: "작성자1",
+                date: "2024-04-22",
+                views: "100"
+            },
+            {
+                title: "게시글2 제목",
+                author: "작성자2",
+                date: "작성일2",
+                views: "조회수2"
+            },
+            {
+                title: "게시글3 제목",
+                author: "작성자3",
+                date: "작성일3",
+                views: "조회수3"
+            },
+            {
+                title: "게시글4 제목",
+                author: "작성자4",
+                date: "작성일4",
+                views: "조회수4"
+            },
+            {
+                title: "게시글5 제목",
+                author: "작성자5",
+                date: "작성일5",
+                views: "조회수5"
+            },
+            {
+                title: "게시글6 제목",
+                author: "작성자6",
+                date: "작성일6",
+                views: "조회수6"
+            },
+            {
+                title: "게시글7 제목",
+                author: "작성자7",
+                date: "작성일7",
+                views: "조회수7"
+            },
+            {
+                title: "게시글8 제목",
+                author: "작성자8",
+                date: "작성일8",
+                views: "조회수8"
+            },
+            {
+                title: "게시글9 제목",
+                author: "작성자9",
+                date: "작성일9",
+                views: "조회수9"
+            },
+            {
+                title: "게시글10 제목",
+                author: "작성자10",
+                date: "작성일10",
+                views: "조회수10"
+            },
+            {
+                title: "게시글11 제목",
+                author: "작성자11",
+                date: "작성일11",
+                views: "조회수11"
+            },
+            {
+                title: "게시글12 제목",
+                author: "작성자12",
+                date: "작성일12",
+                views: "조회수12"
+            },
+            {
+                title: "게시글13 제목",
+                author: "작성자13",
+                date: "작성일13",
+                views: "조회수13"
+            },
+            {
+                title: "게시글14 제목",
+                author: "작성자14",
+                date: "작성일14",
+                views: "조회수14"
+            },
+            {
+                title: "게시글15 제목",
+                author: "작성자15",
+                date: "작성일15",
+                views: "조회수15"
+            }
+            // 추가적인 게시글 데이터...
+        ];
+
+        // 페이지 로드 시 초기 페이지 표시
+        document.addEventListener("DOMContentLoaded", () => {
+            displayPosts(1);
+            displayPagination();
+        });
+
+        // 페이지 순서를 표시하는 함수
+        function displayPagination() {
+            const pagination = document.querySelector(".pagination");
+            pagination.innerHTML = ""; // 기존 순서 초기화
+
+            const totalPages = Math.ceil(posts.length / 10); // 총 페이지 수 계산
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement("a");
+                pageLink.href = "#";
+                pageLink.classList.add("page-link");
+                pageLink.textContent = i;
+                pageLink.addEventListener("click", () => {
+                    displayPosts(i);
+                });
+                pagination.appendChild(pageLink);
+            }
+
+            // 다음 페이지로 넘어가는 버튼 추가
+            const nextPageLink = document.createElement("a");
+            nextPageLink.href = "#";
+            nextPageLink.classList.add("next-page");
+            nextPageLink.textContent = "다음";
+            nextPageLink.addEventListener("click", () => {
+                // 현재 페이지를 가져옴
+                const currentPage = document.querySelector(".active").textContent;
+                displayPosts(parseInt(currentPage) + 1); // 다음 페이지 표시
+            });
+            pagination.appendChild(nextPageLink);
+        }
+
+        // 게시글 목록을 표시하는 함수
+        function displayPosts(pageNumber) {
+            const postList = document.querySelector(".post-list");
+            postList.innerHTML = ""; // 기존 목록 초기화
+
+            // 현재 페이지에 보여질 게시글 개수
+            const itemsPerPage = 10;
+            // 시작 인덱스와 끝 인덱스 계산
+            const startIndex = (pageNumber - 1) * itemsPerPage;
+            const endIndex = pageNumber * itemsPerPage;
+
+            // 게시글 헤더 추가
+            const postHeader = document.createElement("div");
+            postHeader.classList.add("post-header");
+            postList.appendChild(postHeader);
+            const headerItems = ["Title", "Writer", "Date", "View"];
+            headerItems.forEach(item => {
+                const headerItem = document.createElement("div");
+                headerItem.classList.add("header-item");
+                headerItem.textContent = item;
+                postHeader.appendChild(headerItem);
+            });
+
+            // 게시글 목록 추가
+            posts.slice(startIndex, endIndex).forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.classList.add("post");
+                postList.appendChild(postElement);
+
+                // 제목을 클릭 가능한 링크로 변경
+                const titleLink = document.createElement("a");
+                titleLink.href = "#"; // 클릭 이벤트 처리를 위해 임시로 #
+                titleLink.textContent = post.title;
+                titleLink.addEventListener("click", () => {
+                    goToPostDetail(post.title); // 제목을 클릭하면 해당 게시물의 상세 페이지로 이동
+                });
+                postElement.appendChild(titleLink);
+
+                // 나머지 게시글 정보 추가
+                const postItems = [post.author, post.date, post.views];
+                postItems.forEach(item => {
+                    const postItem = document.createElement("div");
+                    postItem.classList.add("post-item");
+                    postItem.textContent = item;
+                    postElement.appendChild(postItem);
+                });
+            });
+
+            // 현재 페이지의 페이지 링크를 활성화
+            const pageLinks = document.querySelectorAll(".page-link");
+            pageLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.textContent === pageNumber.toString()) {
+                    link.classList.add("active");
+                }
+            });
+        }
+
+        // 해당 게시글의 상세 페이지로 이동하는 함수
+        function goToPostDetail(title) {
+            window.location.href = "postDetail.html"; // postDetail.html로 이동
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="bookMain.js"></script>
+    <script src="https://kit.fontawesome.com/5c3afda2cc.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+/* my page */
+.main-screen-mypage {
+	display : block;
+	margin: 0 auto;
+	font-family: "Diphylleia", serif;
+}
+
+.myProfile {
+	float : left;
+	margin-left : 0px;
+	padding : 15px;
+	border : 2px solid white;
+	width : 300px;
+	height : 800px;
+}
+.myProfile__info{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.myProfile__name{
+	font-size: 20px;
+}
+.myProfile div {
+	text-align : center;
+}
+.myProfile img{
+	width : 250px;
+	height : 250px;
+}
+.mypageMenu-p{
+	display: flex;
+	flex-direction: column;
+	margin-top : 32px;
+	padding : 20px;
+	border : 1px solid var(--light-green);
+	height : 430px;
+}
+.mypageMenu-p span{
+	font-size: 20px;
+	background-color: var(--light-green);
+	margin-bottom: 20px;
+}
+.mypageMenu-p a{
+	display: flex;
+	justify-content: flex-start;
+	padding-bottom: 20px;
+	padding-left: 10px;
+	font-size: 18px;
+}
+.myorderList {
+	/* margin-top : 100px; */
+	margin-left : 350px;
+	padding : 50px;
+	width : 850px;
+	height : 800px;
+	color : black;
+	background-color: white;
+	border-radius: 15px;
+}
+.myorderList h1{
+	padding-bottom : 20px;
+}
+#myorderList_table, th, td {
+	border : 1px solid var(--white);
+	border-collapse: collapse;
+	padding: 10px;
+}
+#myorderList_table {
+	width : 90%;
+	text-align: center;
+	margin : 0 auto;
+}
+.memberInfoModify {
+	margin-top: 20px;
+	padding : 50px;
+	width : 800px;
+	height : 500px;
+	color : black;
+	background-color: white;
+	border-radius: 15px;
+	text-align: center;
+	font-family: "Diphylleia", serif;
+	font-size : 18px;
+}
+/* info */
+#myInfo_table, th, td {
+	border : 1px solid black;
+	border-collapse: collapse;
+	padding: 10px;
+}
+.memberInfoModify td{
+	width : 70%;
+}
+.myInfoMenu a{
+    text-decoration: none;
+    color : var(--white);
+}
+
+#myInfo_table {
+	text-align: center;
+	margin : 0 auto;
+}
+
+#myInfo_table td {
+	text-align: left;
+}
+
+.modifyBtn {
+	margin-left : 10px;
+	margin-right : 10px;
+	padding-left : 5px;
+	padding-right : 5px;
+}
+
+
+/* pw modify */
+.screen-pwModify{
+	font-family: "Diphylleia", serif;
+	display : flex;
+	flex-direction: column;	
+	align-items: center;
+	margin-top: 100px;
+}
+.screen-pwModify div{
+	margin : 10px;
+	font-size: 20px;
+}
+
+#pwModifyBtn {
+	margin-left : 0px;
+}
+/* delete */
+.deleteAccountGuide h2,
+.deleteAccount p{
+	padding : 20px 0;
+	font-family: "Diphylleia", serif;
+}
+.deleteAccountGuide input{
+	margin-left: 20px;
+}
+.deleteAccountGuide__msg{
+	color : tomato;
+	font-size: 20px;
+}
+#deleteAccountBtn{
+	background-color: var(--light-green);
+	color : white;	
+	padding : 10px 20px;
+	border-style:none;
+	margin : 20px 0; 
+}
