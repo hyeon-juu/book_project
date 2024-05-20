@@ -10,7 +10,7 @@
 @import "components/user.css";
 
 /* Screens */
-@import "screens/bookMain.css";
+@import "screens/index.css";
 @import "screens/bookResult.css";
 
 @import "screens/bookBestAndNew.css";  /* 장미연님 */
@@ -41,4 +41,7 @@ body{
 a{
     text-decoration: none;
     color : var(--white);
+}
+li{
+    list-style: none;
 }

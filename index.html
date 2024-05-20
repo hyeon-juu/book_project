@@ -19,7 +19,7 @@
 
         <div class="screen-header__user">
             <a href="bookLogIn.html">Log In</a>
-            <a href="bookSignIn.html">Sign In</a>
+            <a href="bookSignIn.html">Sign Up</a>
         </div>
     </header>
 
@@ -29,19 +29,48 @@
             <li><a href="bookNew.html">New</a></li>
             <li><a href="bookBoard.html">Community</a></li>
         </ul>
+
         <!-- <a class="mypage" href="bookMyPage.html">My Page</a> -->
+        <ul class="header-nav__lists2">
+            <li><a href="#">할인혜택</a></li>
+            <span>|</span>
+            <li><a href="#">출석체크</a></li>
+        </ul>
     </nav>
 
     <main class="main-screen">
+
         <div class="banner">
-            <div class="banner__card"><img src="img/banner1.jpg"></div>
-            <div class="banner__card"><img src="img/banner2.jpg"></div>
-            <div class="banner__card"><img src="img/banner3.jpg"></div>
-            <div class="banner__card"><img src="img/banner4.jpg"></div>
-            <div class="banner__card"><img src="img/banner5.jpg"></div>
+            <div id="banner__text">"&nbsp;🍀읽는 사람의 카탈로그<br>봄의 헤이모구 굿즈🐻&nbsp;"</div>
+            <img id="banner__img" src="img/banner1.png">
+            <!-- <div class="banner__buttons">
+                <button class="banner__button" data-index="0">1</button>
+                <button class="banner__button" data-index="1">2</button>
+                <button class="banner__button" data-index="2">3</button>
+                <button class="banner__button" data-index="3">4</button>
+                <button class="banner__button" data-index="4">5</button>
+                <button class="banner__button" data-index="5">6</button>
+                <button class="banner__button" data-index="6">7</button>
+                <button class="banner__button" data-index="7">8</button>
+            </div> -->
         </div>
+
+        <div class="many_buttons">
+            <button><i class="fa-solid fa-fire"></i><span>HOT</span></button>
+            <button><i class="fa-solid fa-trophy"></i><span>TOP</span></button>
+            <button><i class="fa-solid fa-hand-holding-heart"></i><span>선물</span></button>
+            <button><i class="fa-solid fa-truck-fast"></i><span>배송</span></button>
+            <button><i class="fa-solid fa-thumbs-up"></i><span>추천</span></button>
+            <button><i class="fa-solid fa-book"></i><span>작품</span></button>
+            <button><i class="fa-solid fa-calendar-days"></i><span>일정</span></button>
+            <button><i class="fa-regular fa-credit-card"></i><span>카드</span></button>
+            <button><i class="fa-solid fa-camera-retro"></i><span>추억</span></button>
+            <button><i class="fa-solid fa-compact-disc"></i><span>음반</span></button>
+        </div>
+
         <div class="recommend">
             <span class="recommend__title">Today's book</span>
+            <span class="recommend__date">[ 2024-05-20 ]</span>
             <div class="book">
                 <div class="book__col">
                     <img src="img/book.jpg">
@@ -57,11 +86,66 @@
                 </div>
             </div>
         </div>
+
+        <div class="ad">
+            <div>
+                영화 &lt;HER&gt;의 현실화, <br>구글, 오픈 API 혁명 예측!<br>
+                최재봉 성균관대 부총장의 신작 &lt;&lt;AI사피엔스&gt;&gt;
+                <img src="img/ad1.png">
+            </div>
+            <div>
+                루이스 AI <br>
+                스토리 공모전<br>
+                5분만에 작가 변신! <br>상금 1천만원 도전!
+                <img src="img/ad2.png">
+            </div>
+        </div>
+
+        <div class="hot">
+            <span class="hot__title">급상승! 많이 보고 있는 상품</span>
+            <div class="hot__books">
+                <div class="hot__book">
+                    <img src="img/hot1.jpg">
+                    <div>
+                        <span>경제/경영</span>
+                        <span class="hot__title-small">더 피아트 스탠다드 특별 강연 패키지</span>
+                        <span>사이페딘 아모스, 다산북스</span>
+                    </div>
+                </div>
+                <div class="hot__book">
+                    <img src="img/hot2.jpg">
+                    <div>
+                        <span>시/에세이</span>
+                        <span class="hot__title-small">전지적 푸바오 시점: 아이러푸 에디션</span>
+                        <span>송영관, 위즈덤하우스</span>
+                    </div>
+                </div>
+                <div class="hot__book">
+                    <img src="img/hot3.jpg">
+                    <div>
+                        <span>경제/경영</span>
+                        <span class="hot__title-small">어떻게 살 것인가</span>
+                        <span>이광수, 이든하우스</span>
+                    </div>
+                </div>
+                <div class="hot__book">
+                    <img src="img/hot4.jpg">
+                    <div>
+                        <span>예술/대중문화</span>
+                        <span class="hot__title-small">바오패밀리 컬러링북</span>
+                        <span>Kami25, 라이카미</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
 
+
+    <script src="banner.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <script src="bookMain.js"></script>
+    <script src="index.js"></script>
     <script src="https://kit.fontawesome.com/5c3afda2cc.js" crossorigin="anonymous"></script>
 </body>
 

@@ -23,6 +23,7 @@
 }
 .result__detail:hover{
     background-color: var(--light-green);
+    cursor: pointer;
 }
 .result__detail img{
     width : 150px;
