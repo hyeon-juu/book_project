@@ -12,8 +12,8 @@ let currentIndex = 0;
 
 function changeSlide() {
     currentIndex = (currentIndex + 1) % slides.length;
-    document.getElementById('banner__text').innerText = slides[currentIndex].text;
     document.getElementById('banner__img').src = slides[currentIndex].image;
+    document.getElementById('banner__text').innerText = slides[currentIndex].text;
 }
 setInterval(changeSlide, 3000); 
 
